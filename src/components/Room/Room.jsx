@@ -1,4 +1,4 @@
-import { collection, onSnapshot, query } from 'firebase/firestore'
+import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore'
 import React,{useEffect} from 'react'
 import { db } from '../../firebase'
 import { useContext } from 'react'
@@ -25,12 +25,21 @@ const Room = () => {
         return ()=> unsub() 
         
       },[])
+     
   return (
     <>
         {messages.map((v,i)=>{
+            console.log(currentUser)
             return(
-                <div key={i} className={ `flex flex-row w-full ${v.user == currentUser ? 'justify-end':'justify-end'} `}>
+                
+                <div key={i} className={ `flex flex-row w-full ${v.name == currentUser.displayName ? 'justify-end':'justify-start'} `}>
                     <div className={`w-fit min-w-[200px] p-3 border rounded-[32px] bg-[#FFFFFF]  `} >
+                        <div className='w-full flex justify-end'>
+                            <button onClick={()=>{
+                                if(v.email === currentUser.email)
+                                deleteDoc(doc(db,'room',v.id))
+                                }} className='text-black text-xs border focus:outline-none border-black w-4 rounded-full'>X</button>
+                        </div>
                         <p >{v.message}</p>
                         <p className=' text-xs w-full text-opacity-40 text-black'>{v.name}</p>
                         <p className=' text-xs w-full text-opacity-40 text-black'>{
@@ -39,10 +48,13 @@ const Room = () => {
                             minute: '2-digit'
                             })}
                         </p>
+                        
+
                     </div>  
                 </div>
             )
         })}
+       
     </>
   )
 }
