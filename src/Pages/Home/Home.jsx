@@ -2,7 +2,7 @@ import React,{ useContext } from 'react'
 import { auth } from '../../firebase'
 import { UserContext } from '../../context/UserContext'
 import { Layout } from '../../components/Layout'
-
+import { Room } from '../../components/Room'
 const Home = () => {
   const{users,setUsers,currentUser,setCurrentUser}=useContext(UserContext)
 
@@ -23,6 +23,7 @@ const Home = () => {
                 </button>
               </span>
             </div>
+            <Room/>
         </div>
         
         
