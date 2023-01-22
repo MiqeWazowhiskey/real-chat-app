@@ -3,6 +3,7 @@ import React,{useEffect} from 'react'
 import { db } from '../../firebase'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
+import {BsFillTrashFill as Trash} from 'react-icons/bs'
 const options = {
     weekday: "long",
     year: "numeric",
@@ -34,20 +35,25 @@ const Room = () => {
                 
                 <div key={i} className={ `flex flex-row w-full ${v.name == currentUser.displayName ? 'justify-end':'justify-start'} `}>
                     <div className={`w-fit min-w-[200px] p-3 border rounded-[32px] bg-[#FFFFFF]  `} >
-                        <div className='w-full flex justify-end'>
+                        
+                        <p className='text-xl' >{v.message}</p>
+                        
+                        <div className='flex flex-row'>
+                          <div>
+                            <p className=' text-xs w-full text-opacity-40 text-black'>{v.name}</p>
+                            <p className=' text-xs w-full text-opacity-40 text-black'>{
+                                new Date(v.time * 1000).toLocaleDateString('en-US', {
+                                hour: '2-digit',
+                                minute: '2-digit'
+                                })}
+                            </p>
+                          </div>
                             <button onClick={()=>{
                                 if(v.email === currentUser.email)
                                 deleteDoc(doc(db,'room',v.id))
-                                }} className='text-black text-xs border focus:outline-none border-black w-4 rounded-full'>X</button>
+                                }} className='text-black text-opacity-25 text-xs focus:outline-none w-4 rounded-full ml-auto h-fit my-auto'><span><Trash size={14}/></span></button>
+                      
                         </div>
-                        <p >{v.message}</p>
-                        <p className=' text-xs w-full text-opacity-40 text-black'>{v.name}</p>
-                        <p className=' text-xs w-full text-opacity-40 text-black'>{
-                            new Date(v.time * 1000).toLocaleDateString('en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                            })}
-                        </p>
                         
 
                     </div>  
