@@ -5,7 +5,7 @@ import { Layout } from '../../components/Layout'
 import { v4 as uuidv4 } from 'uuid';
 import {IoIosSend as Sendicon} from 'react-icons/io'
 import { Room } from '../../components/Room'
-import { collection, deleteDoc, doc, getDocs, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 
 
@@ -38,8 +38,8 @@ const Home = () => {
                 </button>
               </span>
             </div>
-            <div className='border border-black w-full h-full p-6 space-y-4'>
-            <Room/>
+            <div className='w-full h-full lg:p-6 py-6 space-y-4'>
+              <Room/>
             </div>
             <div className='w-full flex-row flex gap-x-5 items-center rounded-md'>
              <input onChange={(e)=>setType(e.target.value)} id='text' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
