@@ -13,7 +13,7 @@ const options = {
   
 
 const Room = () => {
-    const{messages,setMessages,currentUser}= useContext(UserContext)
+    const{messages,setMessages,currentUser,sendTo}= useContext(UserContext)
     useEffect(()=>{
         const q = query(collection(db,'room'))
         const unsub = onSnapshot(q,(snapshot)=>{
@@ -26,9 +26,10 @@ const Room = () => {
         return ()=> unsub() 
         
       },[])
-     
+     console.log(sendTo.name)
   return (
     <>
+      <h2 className='text-2xl font-bold w-full text-center'>{ sendTo.name}</h2>
         {messages.slice(0).reverse().map((v,i)=>{
             return(
                 
