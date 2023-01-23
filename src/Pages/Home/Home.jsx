@@ -23,9 +23,9 @@ const Home = () => {
   
   return (
     <Layout>
-        <div className='lg:w-1/3 w-full h-full lg:h-5/6 bg-[#BBBBBB] rounded-[50px] flex flex-col items-center justify-between shadow-inner shadow-black border-4 border-[#E3596D] p-10'>
+        <div className='lg:w-1/3 w-full h-full lg:h-5/6 bg-[#625776] rounded-[50px] flex flex-col items-center justify-between shadow-inner shadow-black border-4 border-[#9D68FF] p-10'>
             <div className='w-full justify-between'>
-              <span className='border rounded-[50px] p-2 text-white bg-opacity-20 bg-[#E3596D]'>
+              <span className='border rounded-[50px] p-2 text-white '>
                 <button className='focus:outline-none' onClick={async()=>{
                   if(currentUser){
                   auth.signOut()
@@ -38,19 +38,21 @@ const Home = () => {
                 </button>
               </span>
             </div>
+            <div className='border border-black w-full h-full p-6 space-y-4'>
             <Room/>
+            </div>
             <div className='w-full flex-row flex gap-x-5 items-center rounded-md'>
              <input onChange={(e)=>setType(e.target.value)} id='text' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
-             <span className='bg-[#E3596D] text-white border rounded-full p-2 items-center flex'>
+             <span className='bg-[#9D68FF] text-white border rounded-full p-2 items-center flex'>
                 <button onClick={async()=>{
                   const id = uuidv4()
                   await setDoc(doc(db, "room",id ), {
                     id:id,
-                    email:currentUser.email,
+                    from:currentUser.email,
                     message: type,
                     name: currentUser.displayName,
                     time: new Date().getTime(),
-                  });
+                  }).then(()=>{document.getElementById('text').value = ''})
                 }}>
                   <Sendicon size={30}/>
                 </button>

@@ -29,12 +29,11 @@ const Room = () => {
      
   return (
     <>
-        {messages.map((v,i)=>{
-            console.log(currentUser)
+        {messages.slice(0).reverse().map((v,i)=>{
             return(
                 
-                <div key={i} className={ `flex flex-row w-full ${v.name == currentUser.displayName ? 'justify-end':'justify-start'} `}>
-                    <div className={`w-fit min-w-[200px] p-3 border rounded-[32px] bg-[#FFFFFF]  `} >
+                <div key={i} className={ `flex flex-row w-full ${v.from == currentUser.email ? 'justify-end':'justify-start'} `}>
+                    <div className={`w-fit text-ellipsis min-w-[200px] p-3 border rounded-[32px] bg-[#FFFFFF]  `} >
                         
                         <p className='text-xl' >{v.message}</p>
                         
@@ -49,7 +48,7 @@ const Room = () => {
                             </p>
                           </div>
                             <button onClick={()=>{
-                                if(v.email === currentUser.email)
+                                if(v.from === currentUser.email)
                                 deleteDoc(doc(db,'room',v.id))
                                 }} className='text-black text-opacity-25 text-xs focus:outline-none w-4 rounded-full ml-auto h-fit my-auto'><span><Trash size={14}/></span></button>
                       
