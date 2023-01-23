@@ -7,11 +7,11 @@ import {IoIosSend as Sendicon} from 'react-icons/io'
 import { Room } from '../../components/Room'
 import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
-
+import { Contacts } from '../../components/Contacts';
 
 
 const Home = () => {
-  const{users,setUsers,currentUser,setCurrentUser,setMessages}=useContext(UserContext)
+  const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact}=useContext(UserContext)
   /*window.onbeforeunload = ()=>{
     auth.signOut()
     const tempUsers = users.filter(v=>{v!=currentUser})
@@ -20,11 +20,21 @@ const Home = () => {
   }
   */
   const [type,setType]= useState('')
-  
   return (
     <Layout>
-        <div className='lg:w-1/3 w-full h-full lg:h-5/6 bg-[#625776] rounded-[50px] flex flex-col items-center justify-between shadow-inner shadow-black border-4 border-[#9D68FF] p-10'>
-            <div className='w-full justify-between'>
+        {contact
+        ? 
+        <div className='w-full h-full'>
+          <div className='w-full flex justify-center'>
+            <span>
+              <button onClick={handleToggle} className='rounded-full font-bold text-2xl text-[#E3596D] w-6 focus:outline-none'>X</button>
+            </span>
+          </div>
+        <Contacts/>
+        </div>
+        :
+          <>
+            <div className='w-full flex justify-between'>
               <span className='border rounded-[50px] p-2 text-white '>
                 <button className='focus:outline-none' onClick={async()=>{
                   if(currentUser){
@@ -35,6 +45,11 @@ const Home = () => {
                 }
                 }}>
                   Logout
+                </button>
+              </span>
+              <span>
+                <button onClick={handleToggle}>
+                  Contacts
                 </button>
               </span>
             </div>
@@ -58,9 +73,9 @@ const Home = () => {
                 </button>
               </span>
             </div>
+          </>
             
-            
-        </div>
+        }
         
         
     </Layout>

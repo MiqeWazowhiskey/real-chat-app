@@ -20,32 +20,33 @@ function App() {
       const q = query(collection(db,'users'))
       const unsub = onSnapshot(q,(snap)=>{
         const temp = []
-        snap.forEach((doc)=>{
-          temp.push(doc)
+        snap.forEach(doc=>{
+          temp.push({...doc.data(), id:doc.id })
         })
         setUsers(temp)
       })
-      return ()=> { unsub() }
+      return ()=>  unsub() 
     
   },[])
   useEffect(()=>{
- 
-    if(currentUser && !users.find(v=>{v.email==currentUser.email}))
-    {const id = uuidv4()
-    const set = async()=>{await setDoc(doc(db,'users',id),{
-      name:currentUser.displayName,
-      id:id,
-      email:currentUser.email
-      }).then(()=>{
+    const tempUser = users
+    if(currentUser && !tempUser.includes(v=>v.id==currentUser.uid))
+    {
+      const addedUser = {
+        name:currentUser.displayName,
+        id:currentUser.uid,
+        email:currentUser.email
+        }
+    const set = async()=>{await setDoc(doc(db,'users',currentUser.uid),addedUser).then(()=>{
         const temp = users
-        temp.push(currentUser)
-        setUsers(temp)
-    })  }
+        temp.push(addedUser)
+        setUsers(addedUser)
+    })}
     set().catch(console.error)}
   },[])
   return (
   <>
-    {currentUser?<Home/>:<Login/>}
+    {currentUser? <Home/>:<Login/>}
   </>
     )
 }
