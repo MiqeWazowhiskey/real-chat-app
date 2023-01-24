@@ -34,7 +34,7 @@ const Room = () => {
   return (
     <>
   
-    <div id='room' ref={messagesEndRef} style={{overflowY:'auto'}} className='lg:h-96 h-full w-full lg:p-4 p-6 space-y-1 '>
+    <div id='room' ref={messagesEndRef} style={{overflowY:'auto'}} className='h-full w-full m-6 space-y-1 '>
         {messages.slice(0).sort((a,b)=>{return parseFloat(a.time)-parseFloat(b.time)}).map((v,i)=>{
             return(
                 <div key={i}>
