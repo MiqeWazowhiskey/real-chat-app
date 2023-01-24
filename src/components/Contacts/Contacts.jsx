@@ -1,8 +1,9 @@
 import React,{ useContext, useEffect } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { Layout } from '../Layout'
+import { auth } from '../../firebase'
 const Contacts = () => {
-    const{users,handleToggle,setSendTo,currentUser}=useContext(UserContext)
+    const{users,handleToggle,setSendTo,sendTo,currentUser}=useContext(UserContext)
     const handleSelect = (child)=> {
         setSendTo({id: child.id, name : child.name})
         handleToggle()
@@ -10,7 +11,7 @@ const Contacts = () => {
    
   return (
         <div className=' h-full'   style={{overflowY:'auto'}}>
-            <div  className='w-full h-full flex-col flex items-center' >
+           {users.length>1 ? <div  className='w-full h-full flex-col flex items-center' >
             {users && users.map((v,i)=>{
                 return(
                     <div key={i} className='hover:text-[#E3596D] flex-col justif-around p-5 w-full'>
@@ -22,8 +23,7 @@ const Contacts = () => {
                     </div>
                 )
             })}
-        </div>
-
+        </div> : <div className='w-full h-full text-center'><h1 className='text-2xl text-black'>FREE DATABASE COMEBACK LATER :/ </h1></div>}
     </div>
   )
     
