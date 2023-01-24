@@ -14,8 +14,8 @@
 
 ## Chat section
 
-![Screenshot 2023-01-16 170357](https://user-images.githubusercontent.com/91954535/214191557-b98372ae-7bb1-443f-b541-4dccd31af08f.jpg)
+![Screenshot 2023-01-24 155707](https://user-images.githubusercontent.com/91954535/214297548-e4c39ae5-f159-4175-9557-0a07220af6f2.jpg)
 
 ## MOBILE
 
-![Screenshot 2023-01-24 040144](https://user-images.githubusercontent.com/91954535/214191716-df0e5f2b-c88c-49f2-974e-0a520ec40e9b.jpg)
+![Screenshot 2023-01-24 155808](https://user-images.githubusercontent.com/91954535/214297710-229386ba-6a7a-47dc-b8e4-d2245bd7563b.jpg)
