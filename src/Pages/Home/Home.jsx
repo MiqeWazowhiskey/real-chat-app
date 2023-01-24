@@ -11,13 +11,7 @@ import { Contacts } from '../../components/Contacts';
 import {BiMessageDetail as Message} from 'react-icons/bi'
 const Home = () => {
   const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact,sendTo}=useContext(UserContext)
-  /*window.onbeforeunload = ()=>{
-    auth.signOut()
-    const tempUsers = users.filter(v=>{v!=currentUser})
-    setCurrentUser(null)
-    setUsers(tempUsers)
-  }
-  */    
+  
  
   const ref = useRef(null)
 
@@ -32,6 +26,7 @@ const Home = () => {
                     sendTo:sendTo.id,
                     messageId: currentUser.uid+sendTo.id,
                     message: type,
+                    liked:false,
                     name: currentUser.displayName,
                     time: Math.floor(Date.now() / 1000),
                   }).then(()=>{document.getElementById('text').value = ''})

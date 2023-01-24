@@ -1,24 +1,21 @@
-import { collection, deleteDoc, doc, onSnapshot, query, setDoc, where } from 'firebase/firestore'
+import { collection, deleteDoc, doc, onSnapshot, query, setDoc, updateDoc, where } from 'firebase/firestore'
 import React,{ useEffect, useState} from 'react'
 import { db } from '../../firebase'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import {BsFillTrashFill as Trash} from 'react-icons/bs'
-const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
+import {FcLike,FcLikePlaceholder} from 'react-icons/fc'
+
   
 const Room = () => {
-  /*used it to additional id for what does not have messageId
+  /*to change something for all docs
     useEffect(()=>{
       const q = query(collection(db,'room'))
         const unsub = onSnapshot(q,(snapshot)=>{
           snapshot.forEach(data=>{
             setDoc(doc(db,'room',data.id),{
-              messageId: data.data().sendTo + data.data().sendFrom
+              messageId: data.data().sendTo + data.data().sendFrom,
+              liked:false
             },{merge: true}).then(()=>console.log('success'))
           })
           
@@ -27,7 +24,6 @@ const Room = () => {
     },[])
     */
     const{messages,setMessages,currentUser,sendTo,messagesEndRef}= useContext(UserContext)
-    console.log(messages)
 
     useEffect(()=>{
         const q = query(collection(db,'room'),where('messageId', 'in',[sendTo.id+currentUser.uid , currentUser.uid+sendTo.id]))
@@ -60,7 +56,16 @@ const Room = () => {
                         
                         <p className='text-xl' >{v.message}</p>
                         
-                        <div className='flex flex-row'>
+                        <div className='flex flex-row items-center'>
+                        <div className='p-4'><button onClick={
+                          
+                          async()=>{
+                            await updateDoc(doc(db,'room',v.id),{
+                              liked: !v.liked
+                            })
+                          }
+                            }>{v.liked?<FcLike/>:<FcLikePlaceholder/>}</button></div>
+
                           <div>
                             <p className=' text-xs w-full text-opacity-40 text-black'>{v.name}</p>
                             <p className=' text-xs w-full text-opacity-40 text-black'>{
@@ -70,15 +75,16 @@ const Room = () => {
                                 })}
                             </p>
                           </div>
-                            <button onClick={()=>{
+                            
+                            
+                              <button onClick={()=>{
                               
-                                if(v.sendFrom === currentUser.uid && confirm('Delete message...')==true)
-                                {
-                                  
-                                  deleteDoc(doc(db,'room',v.id))
-                                }
-                                }} className='text-black text-opacity-25 text-xs focus:outline-none w-4 rounded-full ml-auto h-fit my-auto'><span><Trash size={14}/></span></button>
-                      
+                              if(v.sendFrom === currentUser.uid && confirm('Delete message...')==true)
+                              {
+                                
+                                deleteDoc(doc(db,'room',v.id))
+                              }
+                              }} className='text-black text-opacity-25 text-xs focus:outline-none w-4 rounded-full ml-auto h-fit my-auto'><span><Trash size={14}/></span></button>
                         </div>
                         
 
