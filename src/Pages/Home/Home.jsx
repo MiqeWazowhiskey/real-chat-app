@@ -32,7 +32,7 @@ const Home = () => {
                   }).then(()=>{document.getElementById('text').value = ''})
                 }
       }
-      set()
+      set().then(setType(''))
     }
   }
   const [type,setType]= useState('')
@@ -97,7 +97,7 @@ const Home = () => {
                     message: type,
                     name: currentUser.displayName,
                     time: Math.floor(Date.now() / 1000),
-                  }).then(()=>{document.getElementById('text').value = ''})
+                  }).then(()=>{document.getElementById('text').value = ''}).then(setType(''))
                 }
                 }}>
                   <Sendicon size={30}/>
