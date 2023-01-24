@@ -36,11 +36,7 @@ function App() {
         id:currentUser.uid,
         email:currentUser.email
         }
-    const set = async()=>{await setDoc(doc(db,'users',currentUser.uid),addedUser).then(()=>{
-        const temp = users
-        temp.push(addedUser)
-        setUsers(addedUser)
-    })}
+    const set = async()=>{await setDoc(doc(db,'users',currentUser.uid),addedUser)}
     set().catch(console.error)}
   },[])
   return (
