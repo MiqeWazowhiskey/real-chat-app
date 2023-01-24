@@ -6,6 +6,7 @@ import { Login } from './components/Login'
 import { UserContext } from './context/UserContext'
 import { v4 as uuidv4 } from 'uuid';
 import { collection, doc, getDoc, onSnapshot, query, setDoc } from 'firebase/firestore'
+import { onAuthStateChanged } from 'firebase/auth'
 
 function App() {
   const{users,setUsers,currentUser,setCurrentUser}=useContext(UserContext)
@@ -39,7 +40,7 @@ function App() {
         })}
     set().catch(console.error)
   }
-  },[])
+  },[currentUser])
   return (
   <>
     {currentUser? <Home/>:<Login/>}
