@@ -8,14 +8,13 @@ const Contacts = () => {
         handleToggle()
     }
   return (
-        <div style={{overflowY:'auto'}}>
-            <div className='w-full h-full flex-col flex items-center'>
+        <div className='border h-full'  style={{overflowY:'auto'}}>
+            <div  className='w-full h-full flex-col flex items-center' >
             {users && users.map((v,i)=>{
-                const temp = {id: v.id , name :  v.name}
                 return(
                     <div key={i} className='hover:text-[#E3596D] flex-col justif-around p-5 w-full'>
                         {v.name&&v.id!==currentUser.uid && 
-                            <button onClick={()=>{handleSelect({id :v.id,name: v.name})}} className='focus:outline-none w-full bg-slate-200 p-5 rounded-[50px]'>
+                            <button onClick={()=>{handleSelect({id :v.id,name: v.name})}}  style={{boxShadow:'4px 4px black'}} className='focus:outline-none w-full bg-slate-200 p-5 rounded-[50px]'>
                                 {v.name.substring(0,28)}
                             </button>
                         }

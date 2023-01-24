@@ -24,7 +24,7 @@ const Home = () => {
     <Layout>
         {contact
         ? 
-        <div className='w-full h-full'>
+        <div className='w-full h-full '>
           <div className='w-full flex justify-center'>
             <span>
               <button onClick={handleToggle} className='rounded-full font-bold text-2xl text-[#E3596D] w-6 focus:outline-none'>X</button>
@@ -65,7 +65,7 @@ const Home = () => {
                 </button>
               </span>
             </button>
-              <Room/>
+              <Room />
             <div className='w-full flex-row flex gap-x-5 items-center rounded-md'>
              <input onChange={(e)=>setType(e.target.value)} id='text' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
              <span>
