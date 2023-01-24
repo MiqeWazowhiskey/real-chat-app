@@ -29,8 +29,7 @@ function App() {
     
   },[])
   useEffect(()=>{
-    const tempUser = users
-    if(currentUser && !tempUser.includes(v=>v.id==currentUser.uid))
+    if(currentUser)
     {
       const addedUser = {
         name:currentUser.displayName,
