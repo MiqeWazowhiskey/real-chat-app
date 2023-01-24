@@ -28,16 +28,17 @@ function App() {
       return ()=>  unsub() 
     
   },[])
+  console.log(currentUser)
   useEffect(()=>{
     if(currentUser)
     {
-      const addedUser = {
+    const set = async()=>{await setDoc(doc(db,'users',currentUser.uid),{
         name:currentUser.displayName,
         id:currentUser.uid,
         email:currentUser.email
-        }
-    const set = async()=>{await setDoc(doc(db,'users',currentUser.uid),addedUser)}
-    set().catch(console.error)}
+        })}
+    set().catch(console.error)
+  }
   },[])
   return (
   <>

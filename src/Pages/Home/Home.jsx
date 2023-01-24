@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Contacts } from '../../components/Contacts';
 import {BiMessageDetail as Message} from 'react-icons/bi'
 const Home = () => {
-  const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact,sendTo,messagesEndRef}=useContext(UserContext)
+  const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact,sendTo}=useContext(UserContext)
   /*window.onbeforeunload = ()=>{
     auth.signOut()
     const tempUsers = users.filter(v=>{v!=currentUser})

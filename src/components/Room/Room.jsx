@@ -26,7 +26,6 @@ const Room = () => {
         return ()=> unsub() 
         
       },[])
-      console.log(sendTo)
   return (
     <>
   

@@ -7,13 +7,12 @@ export const UserProvider = ({children}) =>{
     const[messages,setMessages]= useState([])
     const [contact,setContact]= useState(false)
     const[sendTo,setSendTo]= useState({id:'', name:''})
-    const messagesEndRef = useRef(null)
 
     const handleToggle = ()=>{
       setContact(!contact)
     }
     return(
-        <UserContext.Provider value={{currentUser,setCurrentUser,users,setUsers,messages,setMessages,handleToggle,contact,sendTo,setSendTo,messagesEndRef}}>
+        <UserContext.Provider value={{currentUser,setCurrentUser,users,setUsers,messages,setMessages,handleToggle,contact,sendTo,setSendTo}}>
             {children}
         </UserContext.Provider>
     )
