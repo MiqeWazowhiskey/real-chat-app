@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Contacts } from '../../components/Contacts';
 import {BiMessageDetail as Message} from 'react-icons/bi'
 const Home = () => {
-  const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact,sendTo}=useContext(UserContext)
+  const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact,sendTo,messagesEndRef}=useContext(UserContext)
   /*window.onbeforeunload = ()=>{
     auth.signOut()
     const tempUsers = users.filter(v=>{v!=currentUser})
@@ -67,8 +67,8 @@ const Home = () => {
                     sendTo:sendTo.id,
                     message: type,
                     name: currentUser.displayName,
-                    time: new Date().getTime(),
-                  }).then(()=>{document.getElementById('text').value = '';})
+                    time: Math.floor(Date.now() / 1000),
+                  }).then(()=>{document.getElementById('text').value = ''})
                 }
                 }}>
                   <Sendicon size={30}/>

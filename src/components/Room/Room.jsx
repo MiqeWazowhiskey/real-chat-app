@@ -13,7 +13,7 @@ const options = {
   
 
 const Room = () => {
-    const{messages,setMessages,currentUser,sendTo}= useContext(UserContext)
+    const{messages,setMessages,currentUser,sendTo,messagesEndRef}= useContext(UserContext)
     useEffect(()=>{
         const q = query(collection(db,'room'),orderBy('time','asc'))
         const unsub = onSnapshot(q,(snapshot)=>{
@@ -26,13 +26,15 @@ const Room = () => {
         return ()=> unsub() 
         
       },[])
+      console.log(sendTo)
   return (
     <>
-    <div style={{overflowY:'auto'}} className='lg:h-96 h-full w-full p-4 space-y-1 '>
-        {messages.map((v,i)=>{
+  
+    <div ref={messagesEndRef} style={{overflowY:'auto'}} className='lg:h-96 h-full w-full p-4 space-y-1 '>
+        {messages.slice(0).sort((a,b)=>{return parseFloat(a.time)-parseFloat(b.time)}).map((v,i)=>{
             return(
                 <div key={i}>
-                { (v.sendTo == sendTo.id || v.sendFrom == currentUser.uid|| v.sendTo==currentUser.uid || v.sendFrom == sendTo.id) &&
+                { ( v.sendTo==currentUser.uid && v.sendFrom == sendTo.id || v.sendTo == sendTo.id && v.sendFrom == currentUser.uid) &&
                   <div className={ `flex flex-col w-full ${v.sendFrom == currentUser.uid ? 'items-end':'items-start'} `} >
                     <div className={`w-fit text-ellipsis min-w-[200px] p-3 my-1 border rounded-[32px] bg-[#FFFFFF]  `} >
                         
@@ -45,7 +47,7 @@ const Room = () => {
                                 new Date(v.time * 1000).toLocaleDateString('en-US', {
                                 hour: '2-digit',
                                 minute: '2-digit'
-                                }).toString().substring(11)}
+                                })}
                             </p>
                           </div>
                             <button onClick={()=>{

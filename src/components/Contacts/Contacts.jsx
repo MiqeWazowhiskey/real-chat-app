@@ -8,7 +8,7 @@ const Contacts = () => {
         handleToggle()
     }
   return (
-        <>
+        <div style={{overflowY:'auto'}}>
             <div className='w-full h-full flex-col flex items-center'>
             {users && users.map((v,i)=>{
                 const temp = {id: v.id , name :  v.name}
@@ -24,7 +24,7 @@ const Contacts = () => {
             })}
         </div>
 
-    </>
+    </div>
   )
     
     
