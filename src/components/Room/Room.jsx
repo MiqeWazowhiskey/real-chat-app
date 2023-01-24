@@ -1,5 +1,5 @@
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { db } from '../../firebase'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
@@ -50,8 +50,12 @@ const Room = () => {
                             </p>
                           </div>
                             <button onClick={()=>{
-                                if(v.sendFrom === currentUser.uid)
-                                deleteDoc(doc(db,'room',v.id))
+                              
+                                if(v.sendFrom === currentUser.uid && confirm('Delete message...')==true)
+                                {
+                                  
+                                  deleteDoc(doc(db,'room',v.id))
+                                }
                                 }} className='text-black text-opacity-25 text-xs focus:outline-none w-4 rounded-full ml-auto h-fit my-auto'><span><Trash size={14}/></span></button>
                       
                         </div>
