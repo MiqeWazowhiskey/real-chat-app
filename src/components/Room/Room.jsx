@@ -1,5 +1,5 @@
-import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
-import React,{ useEffect} from 'react'
+import { collection, deleteDoc, doc, onSnapshot, query, setDoc, where } from 'firebase/firestore'
+import React,{ useEffect, useState} from 'react'
 import { db } from '../../firebase'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
@@ -11,12 +11,26 @@ const options = {
     day: "numeric",
   };
   
-  
 const Room = () => {
-
-    const{messages,setMessages,currentUser,sendTo,messagesEndRef}= useContext(UserContext)
+  /*used it to additional id for what does not have messageId
     useEffect(()=>{
-        const q = query(collection(db,'room'),orderBy('time','asc'))
+      const q = query(collection(db,'room'))
+        const unsub = onSnapshot(q,(snapshot)=>{
+          snapshot.forEach(data=>{
+            setDoc(doc(db,'room',data.id),{
+              messageId: data.data().sendTo + data.data().sendFrom
+            },{merge: true}).then(()=>console.log('success'))
+          })
+          
+        })
+        return ()=> unsub() 
+    },[])
+    */
+    const{messages,setMessages,currentUser,sendTo,messagesEndRef}= useContext(UserContext)
+    console.log(messages)
+
+    useEffect(()=>{
+        const q = query(collection(db,'room'),where('messageId', 'in',[sendTo.id+currentUser.uid , currentUser.uid+sendTo.id]))
         const unsub = onSnapshot(q,(snapshot)=>{
           const temp =[]
           snapshot.forEach(doc=>{
@@ -26,14 +40,16 @@ const Room = () => {
         })
         return ()=> unsub() 
         
-      },[])
+      },[sendTo])
       //scroll bottom
       useEffect(()=>{
         document.getElementById('room').scrollTop = document.getElementById('room').scrollHeight
       },[messages])
+      const func =async(id,messageId)=>{await setDoc(doc(db,'rooms',id),{
+        messageId: messageId
+      })}
   return (
     <>
-  
     <div id='room' ref={messagesEndRef} style={{overflowY:'auto'}} className='h-full w-full m-6 space-y-1 '>
         {messages.slice(0).sort((a,b)=>{return parseFloat(a.time)-parseFloat(b.time)}).map((v,i)=>{
             return(

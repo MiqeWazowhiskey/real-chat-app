@@ -57,7 +57,8 @@ const Home = () => {
                         name:currentUser.displayName,
                         id:currentUser.uid,
                         email:currentUser.email
-                        })}
+                        })
+                      }
                     set().catch(console.error)
                   }
                 }}>
@@ -76,6 +77,7 @@ const Home = () => {
                     id:id,
                     sendFrom:currentUser.uid,
                     sendTo:sendTo.id,
+                    messageId: currentUser.uid+sendTo.id,
                     message: type,
                     name: currentUser.displayName,
                     time: Math.floor(Date.now() / 1000),
