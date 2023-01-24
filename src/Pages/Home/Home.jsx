@@ -1,4 +1,4 @@
-import React,{ useContext } from 'react'
+import React,{ useContext, useRef } from 'react'
 import { auth, db } from '../../firebase'
 import { UserContext } from '../../context/UserContext'
 import { Layout } from '../../components/Layout'
@@ -17,8 +17,29 @@ const Home = () => {
     setCurrentUser(null)
     setUsers(tempUsers)
   }
-  */
-  document.getElementById('')
+  */    
+ 
+  const ref = useRef(null)
+
+  function handleEnter (e){
+    if(e.key === 'Enter'){
+      const set = async()=>{
+        const id = uuidv4()
+                  if(sendTo.id.length>1){
+                  await setDoc(doc(db, "room",id ), {
+                    id:id,
+                    sendFrom:currentUser.uid,
+                    sendTo:sendTo.id,
+                    messageId: currentUser.uid+sendTo.id,
+                    message: type,
+                    name: currentUser.displayName,
+                    time: Math.floor(Date.now() / 1000),
+                  }).then(()=>{document.getElementById('text').value = ''})
+                }
+      }
+      set()
+    }
+  }
   const [type,setType]= useState('')
   return (
     <Layout>
@@ -68,7 +89,7 @@ const Home = () => {
             </button>
               <Room />
             <div className='w-full flex-row flex gap-x-5 items-center rounded-md'>
-             <input onChange={(e)=>setType(e.target.value)} id='text' type='text' autoComplete='off' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
+             <input onChange={(e)=>setType(e.target.value)} id='text' ref={ref} onKeyDown={handleEnter} autoComplete='off' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
              <span>
                 <button className='disabled:bg-[#8366ba] bg-[#9D68FF] text-white border rounded-full p-2 items-center flex' disabled={sendTo.id.length<1} onClick={async()=>{
                   const id = uuidv4()
