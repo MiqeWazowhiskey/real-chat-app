@@ -14,12 +14,13 @@ const Home = () => {
   
  
   const ref = useRef(null)
+  const [type,setType]= useState('')
 
   function handleEnter (e){
     if(e.key === 'Enter'){
       const set = async()=>{
         const id = uuidv4()
-                  if(sendTo.id.length>1){
+                  if(sendTo.id.length>1 && type.length>0){
                   await setDoc(doc(db, "room",id ), {
                     id:id,
                     sendFrom:currentUser.uid,
@@ -35,7 +36,6 @@ const Home = () => {
       set().then(setType(''))
     }
   }
-  const [type,setType]= useState('')
   return (
     <Layout>
         {contact
@@ -88,7 +88,7 @@ const Home = () => {
              <span>
                 <button className='disabled:bg-[#8366ba] bg-[#9D68FF] text-white border rounded-full p-2 items-center flex' disabled={sendTo.id.length<1} onClick={async()=>{
                   const id = uuidv4()
-                  if(sendTo.id.length>1){
+                  if(sendTo.id.length>1&& type.length>0){
                   await setDoc(doc(db, "room",id ), {
                     id:id,
                     sendFrom:currentUser.uid,
