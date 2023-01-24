@@ -29,18 +29,8 @@ function App() {
       return ()=>  unsub() 
     
   },[])
-  console.log(currentUser)
-  useEffect(()=>{
-    if(currentUser)
-    {
-    const set = async()=>{await setDoc(doc(db,'users',currentUser.uid),{
-        name:currentUser.displayName,
-        id:currentUser.uid,
-        email:currentUser.email
-        })}
-    set().catch(console.error)
-  }
-  },[currentUser])
+
+  
   return (
   <>
     {currentUser? <Home/>:<Login/>}

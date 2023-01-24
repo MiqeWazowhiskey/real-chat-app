@@ -49,7 +49,18 @@ const Home = () => {
               </span>
               <h2 className='text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725] brightness-200 '>{sendTo.id.length>1 ? sendTo.name :<p className='text-md font-medium brightness-0'>Please select user to message.</p>}</h2>
               <span>
-                <button onClick={handleToggle}>
+                <button onClick={()=>{
+                  handleToggle()
+                  if(currentUser)
+                    {
+                    const set = async()=>{await setDoc(doc(db,'users',currentUser.uid),{
+                        name:currentUser.displayName,
+                        id:currentUser.uid,
+                        email:currentUser.email
+                        })}
+                    set().catch(console.error)
+                  }
+                }}>
                   <Message size={32} className='text-[#9D68FF] border-2 border-[#9D68FF]' style={{boxShadow:'3px 3px black'}} />
                 </button>
               </span>
