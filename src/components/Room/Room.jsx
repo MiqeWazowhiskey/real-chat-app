@@ -35,7 +35,7 @@ const Room = () => {
                 <div key={i}>
                 { ( v.sendTo==currentUser.uid && v.sendFrom == sendTo.id || v.sendTo == sendTo.id && v.sendFrom == currentUser.uid) &&
                   <div className={ `flex flex-col w-full ${v.sendFrom == currentUser.uid ? 'items-end':'items-start'} `} >
-                    <div className={`w-fit text-ellipsis min-w-[200px] p-3 my-1 border rounded-[32px] bg-[#FFFFFF]  `} >
+                    <div className={`w-[600px] text-ellipsis min-w-[200px] p-3 my-1 border rounded-[32px] bg-[#FFFFFF]  `} >
                         
                         <p className='text-xl' >{v.message}</p>
                         
