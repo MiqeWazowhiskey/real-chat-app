@@ -18,7 +18,7 @@ const Home = () => {
     setUsers(tempUsers)
   }
   */
-  
+  document.getElementById('')
   const [type,setType]= useState('')
   return (
     <Layout>
@@ -67,7 +67,7 @@ const Home = () => {
             </button>
               <Room />
             <div className='w-full flex-row flex gap-x-5 items-center rounded-md'>
-             <input onChange={(e)=>setType(e.target.value)} id='text' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
+             <input onChange={(e)=>setType(e.target.value)} id='text' type='text' autoComplete='off' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
              <span>
                 <button className='disabled:bg-[#8366ba] bg-[#9D68FF] text-white border rounded-full p-2 items-center flex' disabled={sendTo.id.length<1} onClick={async()=>{
                   const id = uuidv4()

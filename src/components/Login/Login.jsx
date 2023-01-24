@@ -6,7 +6,7 @@ import { Layout } from '../Layout'
 
 const Login = () => {
     const login = async() => {
-        signInWithRedirect(auth,provider).catch(er=>alert(er)).then
+        signInWithRedirect(auth,provider).catch(er=>alert(er))
         
     }
   return (
