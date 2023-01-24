@@ -8,10 +8,9 @@ import { Room } from '../../components/Room'
 import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { Contacts } from '../../components/Contacts';
-
-
+import {BiMessageDetail as Message} from 'react-icons/bi'
 const Home = () => {
-  const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact}=useContext(UserContext)
+  const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact,sendTo}=useContext(UserContext)
   /*window.onbeforeunload = ()=>{
     auth.signOut()
     const tempUsers = users.filter(v=>{v!=currentUser})
@@ -19,6 +18,7 @@ const Home = () => {
     setUsers(tempUsers)
   }
   */
+  
   const [type,setType]= useState('')
   return (
     <Layout>
@@ -34,8 +34,8 @@ const Home = () => {
         </div>
         :
           <>
-            <div className='w-full flex justify-between'>
-              <span className='border rounded-[50px] p-2 text-white '>
+            <button className='w-full flex justify-between items-center'>
+              <span className='border rounded-[50px] p-2 text-white h-fit'>
                 <button className='focus:outline-none' onClick={async()=>{
                   if(currentUser){
                   auth.signOut()
@@ -47,27 +47,29 @@ const Home = () => {
                   Logout
                 </button>
               </span>
+              <h2 className='text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725] brightness-200 '>{sendTo.id.length>1 ? sendTo.name :<p className='text-md font-medium brightness-0'>Please select user to message.</p>}</h2>
               <span>
                 <button onClick={handleToggle}>
-                  Contacts
+                  <Message size={32} className='text-[#9D68FF] border-2 border-[#9D68FF]' style={{boxShadow:'3px 3px black'}} />
                 </button>
               </span>
-            </div>
-            <div className='w-full h-full lg:p-6 py-6 space-y-4'>
+            </button>
               <Room/>
-            </div>
             <div className='w-full flex-row flex gap-x-5 items-center rounded-md'>
              <input onChange={(e)=>setType(e.target.value)} id='text' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
-             <span className='bg-[#9D68FF] text-white border rounded-full p-2 items-center flex'>
-                <button onClick={async()=>{
+             <span>
+                <button className='disabled:bg-[#8366ba] bg-[#9D68FF] text-white border rounded-full p-2 items-center flex' disabled={sendTo.id.length<1} onClick={async()=>{
                   const id = uuidv4()
+                  if(sendTo.id.length>1){
                   await setDoc(doc(db, "room",id ), {
                     id:id,
-                    from:currentUser.email,
+                    sendFrom:currentUser.uid,
+                    sendTo:sendTo.id,
                     message: type,
                     name: currentUser.displayName,
                     time: new Date().getTime(),
-                  }).then(()=>{document.getElementById('text').value = ''})
+                  }).then(()=>{document.getElementById('text').value = '';})
+                }
                 }}>
                   <Sendicon size={30}/>
                 </button>

@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore'
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import React,{useEffect} from 'react'
 import { db } from '../../firebase'
 import { useContext } from 'react'
@@ -15,7 +15,7 @@ const options = {
 const Room = () => {
     const{messages,setMessages,currentUser,sendTo}= useContext(UserContext)
     useEffect(()=>{
-        const q = query(collection(db,'room'))
+        const q = query(collection(db,'room'),orderBy('time','asc'))
         const unsub = onSnapshot(q,(snapshot)=>{
           const temp =[]
           snapshot.forEach(doc=>{
@@ -26,15 +26,15 @@ const Room = () => {
         return ()=> unsub() 
         
       },[])
-     console.log(sendTo.name)
   return (
     <>
-      <h2 className='text-2xl font-bold w-full text-center'>{ sendTo.name}</h2>
-        {messages.slice(0).reverse().map((v,i)=>{
+    <div style={{overflowY:'auto'}} className='lg:h-96 h-full w-full p-4 space-y-1 '>
+        {messages.map((v,i)=>{
             return(
-                
-                <div key={i} className={ `flex flex-row w-full ${v.from == currentUser.email ? 'justify-end':'justify-start'} `}>
-                    <div className={`w-fit text-ellipsis min-w-[200px] p-3 border rounded-[32px] bg-[#FFFFFF]  `} >
+                <div key={i}>
+                { (v.sendTo == sendTo.id || v.sendFrom == currentUser.uid|| v.sendTo==currentUser.uid || v.sendFrom == sendTo.id) &&
+                  <div className={ `flex flex-col w-full ${v.sendFrom == currentUser.uid ? 'items-end':'items-start'} `} >
+                    <div className={`w-fit text-ellipsis min-w-[200px] p-3 my-1 border rounded-[32px] bg-[#FFFFFF]  `} >
                         
                         <p className='text-xl' >{v.message}</p>
                         
@@ -45,11 +45,11 @@ const Room = () => {
                                 new Date(v.time * 1000).toLocaleDateString('en-US', {
                                 hour: '2-digit',
                                 minute: '2-digit'
-                                })}
+                                }).toString().substring(11)}
                             </p>
                           </div>
                             <button onClick={()=>{
-                                if(v.from === currentUser.email)
+                                if(v.sendFrom === currentUser.uid)
                                 deleteDoc(doc(db,'room',v.id))
                                 }} className='text-black text-opacity-25 text-xs focus:outline-none w-4 rounded-full ml-auto h-fit my-auto'><span><Trash size={14}/></span></button>
                       
@@ -57,10 +57,12 @@ const Room = () => {
                         
 
                     </div>  
+                </div>}
                 </div>
             )
         })}
        
+    </div>
     </>
   )
 }
