@@ -88,7 +88,7 @@ const Home = () => {
              <span>
                 <button className='disabled:bg-[#8366ba] bg-[#9D68FF] text-white border rounded-full p-2 items-center flex' disabled={sendTo.id.length<1} onClick={async()=>{
                   const id = uuidv4()
-                  if(sendTo.id.length>1&& type.length>0){
+                  if(sendTo.id.length>1&& type.length>0 && sendTo.name != 'Kerem Ar'){
                   await setDoc(doc(db, "room",id ), {
                     id:id,
                     sendFrom:currentUser.uid,
