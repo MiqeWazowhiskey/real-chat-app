@@ -1,5 +1,5 @@
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
-import React,{useEffect, useState} from 'react'
+import React,{ useEffect} from 'react'
 import { db } from '../../firebase'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
@@ -11,8 +11,9 @@ const options = {
     day: "numeric",
   };
   
-
+  
 const Room = () => {
+
     const{messages,setMessages,currentUser,sendTo,messagesEndRef}= useContext(UserContext)
     useEffect(()=>{
         const q = query(collection(db,'room'),orderBy('time','asc'))
@@ -26,10 +27,14 @@ const Room = () => {
         return ()=> unsub() 
         
       },[])
+      //scroll bottom
+      useEffect(()=>{
+        document.getElementById('room').scrollTop = document.getElementById('room').scrollHeight
+      },[messages])
   return (
     <>
   
-    <div ref={messagesEndRef} style={{overflowY:'auto'}} className='lg:h-96 h-full w-full p-4 space-y-1 '>
+    <div id='room' ref={messagesEndRef} style={{overflowY:'auto'}} className='lg:h-96 h-full w-full p-4 space-y-1 '>
         {messages.slice(0).sort((a,b)=>{return parseFloat(a.time)-parseFloat(b.time)}).map((v,i)=>{
             return(
                 <div key={i}>

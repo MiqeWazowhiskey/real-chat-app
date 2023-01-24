@@ -1,4 +1,4 @@
-import React,{ useContext, useEffect } from 'react'
+import React,{ useContext } from 'react'
 import { auth, db } from '../../firebase'
 import { UserContext } from '../../context/UserContext'
 import { Layout } from '../../components/Layout'

@@ -1,4 +1,4 @@
-import React,{ useContext } from 'react'
+import React,{ useContext, useEffect } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { Layout } from '../Layout'
 const Contacts = () => {
@@ -7,8 +7,9 @@ const Contacts = () => {
         setSendTo({id: child.id, name : child.name})
         handleToggle()
     }
+   
   return (
-        <div className='border h-full'  style={{overflowY:'auto'}}>
+        <div className=' h-full'   style={{overflowY:'auto'}}>
             <div  className='w-full h-full flex-col flex items-center' >
             {users && users.map((v,i)=>{
                 return(
