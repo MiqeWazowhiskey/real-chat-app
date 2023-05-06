@@ -1,33 +1,49 @@
-import React,{ useContext, useEffect } from 'react'
-import { UserContext } from '../../context/UserContext'
-import { Layout } from '../Layout'
-import { auth } from '../../firebase'
+import React, { useContext, useEffect } from "react";
+import { UserContext } from "../../context/UserContext";
+import { motion } from "framer-motion";
 const Contacts = () => {
-    const{users,handleToggle,setSendTo,sendTo,currentUser}=useContext(UserContext)
-    const handleSelect = (child)=> {
-        setSendTo({id: child.id, name : child.name})
-        handleToggle()
-    }
-   
-  return (
-        <div className=' h-full'   style={{overflowY:'auto'}}>
-           {users.length>1 ? <div  className='w-full h-full flex-col flex items-center' >
-            {users && users.map((v,i)=>{
-                return(
-                    <div key={i} className='hover:text-[#E3596D] flex-col justif-around p-5 w-full'>
-                        {v.name&&v.id!==currentUser.uid && 
-                            <button onClick={()=>{handleSelect({id :v.id,name: v.name})}}  style={{boxShadow:'4px 4px black'}} className='focus:outline-none w-full bg-slate-200 p-5 rounded-[50px]'>
-                                {v.name.substring(0,28)}
-                            </button>
-                        }
-                    </div>
-                )
-            })}
-        </div> : <div className='w-full h-full text-center'><h1 className='text-2xl text-black'>FREE DATABASE COMEBACK LATER :/ </h1></div>}
-    </div>
-  )
-    
-    
-}
+  const { users, handleToggle, setSendTo, sendTo, currentUser } =
+    useContext(UserContext);
+  const handleSelect = (child) => {
+    setSendTo({ id: child.id, name: child.name });
+    handleToggle();
+  };
 
-export default Contacts
+  return (
+    <div
+      className="no-scrollbar h-full border-r-2 border-[#9c9ca5]"
+      style={{ overflowY: "auto" }}
+    >
+      <div className="w-full h-full flex-col flex items-center">
+        {users &&
+          users.map((v, i) => {
+            return (
+              <motion.div
+                key={i}
+                className=" justif-around w-4/5 m-2"
+                whileHover={{ scale: 1.05 }}
+              >
+                {v.name && v.id != currentUser.uid && (
+                  <button
+                    onClick={() => {
+                      handleSelect({ id: v.id, name: v.name });
+                    }}
+                    className="focus:outline-none w-full flex items-center gap-x-10 font-bold hover:bg-[#d5d5df] bg-[#e5e5f0] p-5 rounded-[12px]"
+                  >
+                    <img
+                      sizes="36x36"
+                      className="w-[36px] rounded-full  border-2 border-white shadow-inner shadow-black"
+                      src="/Hotpot.png"
+                    />
+                    <span className="w-fit">{v.name.substring(0, 28)}</span>
+                  </button>
+                )}
+              </motion.div>
+            );
+          })}
+      </div>
+    </div>
+  );
+};
+
+export default Contacts;

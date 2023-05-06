@@ -1,116 +1,72 @@
-import React,{ useContext, useRef } from 'react'
-import { auth, db } from '../../firebase'
-import { UserContext } from '../../context/UserContext'
-import { Layout } from '../../components/Layout'
-import { v4 as uuidv4 } from 'uuid';
-import {IoIosSend as Sendicon} from 'react-icons/io'
-import { Room } from '../../components/Room'
-import { doc, setDoc } from 'firebase/firestore';
-import { useState } from 'react';
-import { Contacts } from '../../components/Contacts';
-import {BiMessageDetail as Message} from 'react-icons/bi'
+import React, { useContext, useEffect, useRef } from "react";
+import { db } from "../../firebase";
+import { UserContext } from "../../context/UserContext";
+import { Layout } from "../../components/Layout";
+import { v4 as uuidv4 } from "uuid";
+import { Room } from "../../components/Room";
+import { doc, setDoc } from "firebase/firestore";
+import { Contacts } from "../../components/Contacts";
+import { BiMessageDetail as Message } from "react-icons/bi";
+import TextSection from "../../components/TextSection";
 const Home = () => {
-  const{users,setUsers,currentUser,setCurrentUser,handleToggle,contact,sendTo}=useContext(UserContext)
-  
- 
-  const ref = useRef(null)
-  const [type,setType]= useState('')
+  const {
+    users,
+    setUsers,
+    currentUser,
+    setCurrentUser,
+    handleToggle,
+    contact,
+    sendTo,
+    mobile,
+    setMobile,
+  } = useContext(UserContext);
+  //check if user in mobile
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-  function handleEnter (e){
-    if(e.key === 'Enter'){
-      const set = async()=>{
-        const id = uuidv4()
-                  if(sendTo.id.length>1 && type.length>0){
-                  await setDoc(doc(db, "room",id ), {
-                    id:id,
-                    sendFrom:currentUser.uid,
-                    sendTo:sendTo.id,
-                    messageId: currentUser.uid+sendTo.id,
-                    message: type,
-                    liked:false,
-                    name: currentUser.displayName,
-                    time: Math.floor(Date.now() / 1000),
-                  }).then(()=>{document.getElementById('text').value = ''})
-                }
-      }
-      set().then(setType(''))
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(
+        userAgent
+      )
+    ) {
+      setMobile(true);
+    } else {
+      setMobile(true);
     }
-  }
+  }, []);
   return (
     <Layout>
-        {contact
-        ? 
-        <div className='w-full h-full '>
-          <div className='w-full flex justify-center'>
-            <span>
-              <button onClick={handleToggle} className='rounded-full font-bold text-2xl text-[#E3596D] w-6 focus:outline-none'>X</button>
-            </span>
-          </div>
-        <Contacts/>
-        </div>
-        :
-          <>
-            <button className='w-full flex justify-between items-center'>
-              <span className='border rounded-[50px] p-2 text-white h-fit'>
-                <button className='focus:outline-none' onClick={async()=>{
-                  if(currentUser){
-                  auth.signOut()
-                  const tempUsers = users.filter(v=>{v!=currentUser})
-                  setCurrentUser(null)
-                  setUsers(tempUsers)
-                }
-                }}>
-                  Logout
-                </button>
-              </span>
-              <h2 className='text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725] brightness-200 '>{sendTo.id.length>1 ? sendTo.name :<p className='text-md font-medium brightness-0'>Please select user to message.</p>}</h2>
-              <span>
-                <button onClick={()=>{
-                  handleToggle()
-                  if(currentUser)
-                    {
-                    const set = async()=>{await setDoc(doc(db,'users',currentUser.uid),{
-                        name:currentUser.displayName,
-                        id:currentUser.uid,
-                        email:currentUser.email
-                        })
-                      }
-                    set().catch(console.error)
-                  }
-                }}>
-                  <Message size={32} className='text-[#9D68FF] border-2 border-[#9D68FF]' style={{boxShadow:'3px 3px black'}} />
-                </button>
-              </span>
+      {/**Contacts Section */}
+      <div className="lg:w-1/3 w-full h-full mr-auto ">
+        <Contacts />
+      </div>
+      {/**Message room */}
+      <div className="w-2/3 lg:flex hidden flex-col p-5 h-full">
+        <button>
+          <h2 className="text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725] brightness-200 ">
+            {sendTo.id.length > 1 ? (
+              sendTo.name
+            ) : (
+              <p className="text-md font-medium brightness-0">
+                Please select user to message.
+              </p>
+            )}
+          </h2>
+          <span className="lg:hidden">
+            <button onClick={handleToggle}>
+              <Message
+                size={32}
+                className="text-[#9D68FF] border-2 border-[#9D68FF]"
+                style={{ boxShadow: "3px 3px black" }}
+              />
             </button>
-              <Room />
-            <div className='w-full flex-row flex gap-x-5 items-center rounded-md'>
-             <input onChange={(e)=>setType(e.target.value)} id='text' ref={ref} onKeyDown={handleEnter} autoComplete='off' className='bg-[#252020] bg-opacity-30 rounded-md focus:outline-none w-full p-2'  style={{height:'64px'}}/>
-             <span>
-                <button className='disabled:bg-[#8366ba] bg-[#9D68FF] text-white border rounded-full p-2 items-center flex' disabled={sendTo.id.length<1} onClick={async()=>{
-                  const id = uuidv4()
-                  if(sendTo.id.length>1&& type.length>0 && sendTo.name != 'Kerem Ar'){
-                  await setDoc(doc(db, "room",id ), {
-                    id:id,
-                    sendFrom:currentUser.uid,
-                    sendTo:sendTo.id,
-                    messageId: currentUser.uid+sendTo.id,
-                    message: type,
-                    name: currentUser.displayName,
-                    time: Math.floor(Date.now() / 1000),
-                  }).then(()=>{document.getElementById('text').value = ''}).then(setType(''))
-                }
-                }}>
-                  <Sendicon size={30}/>
-                </button>
-              </span>
-            </div>
-          </>
-            
-        }
-        
-        
+          </span>
+        </button>
+        <Room />
+        <TextSection />
+      </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

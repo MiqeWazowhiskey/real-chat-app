@@ -55,11 +55,7 @@ const Room = () => {
     document.getElementById("room").scrollTop =
       document.getElementById("room").scrollHeight;
   }, [messages]);
-  const func = async (id, messageId) => {
-    await setDoc(doc(db, "rooms", id), {
-      messageId: messageId,
-    });
-  };
+
   return (
     <>
       <div
