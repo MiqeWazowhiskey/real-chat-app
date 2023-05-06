@@ -30,7 +30,7 @@ const TextSection = () => {
     }
   }
   return (
-    <div className="w-full flex-row flex gap-x-5 items-center justify-center rounded-md">
+    <div className="w-full flex-row flex gap-x-5 items-center justify-center rounded-md text-white">
       <input
         onChange={(e) => setType(e.target.value)}
         id="text"

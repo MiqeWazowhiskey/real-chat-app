@@ -11,7 +11,7 @@ const Contacts = () => {
 
   return (
     <div
-      className="no-scrollbar h-full border-r-2 border-[#9c9ca5]"
+      className="no-scrollbar h-full border-r-2 bg-[#e5e5f0] pt-10 border-[#9c9ca5]"
       style={{ overflowY: "auto" }}
     >
       <div className="w-full h-full flex-col flex items-center">
@@ -28,7 +28,7 @@ const Contacts = () => {
                     onClick={() => {
                       handleSelect({ id: v.id, name: v.name });
                     }}
-                    className="focus:outline-none w-full flex items-center gap-x-10 font-bold hover:bg-[#d5d5df] bg-[#e5e5f0] p-5 rounded-[12px]"
+                    className="focus:outline-none w-full flex items-center gap-x-10 font-bold hover:bg-[#d5d5df] bg-[#ceced8] p-5 rounded-[12px]"
                   >
                     <img
                       sizes="36x36"
