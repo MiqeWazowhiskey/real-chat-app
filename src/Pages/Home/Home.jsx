@@ -50,7 +50,7 @@ const Home = () => {
       )}
       {/**Message room */}
       <div className="w-2/4 lg:flex hidden flex-col p-5 h-full bg-[#e5e5f0] rounded-r-[12px]">
-        <button>
+        <button className="focus:outline-none">
           <h2 className="text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725] brightness-200 ">
             {sendTo.id.length > 1 ? (
               sendTo.name

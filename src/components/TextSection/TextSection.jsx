@@ -2,9 +2,11 @@ import React, { useState, useRef, useContext } from "react";
 import { IoIosSend as Sendicon } from "react-icons/io";
 import { doc, setDoc } from "firebase/firestore";
 import { UserContext } from "../../context/UserContext";
+import { v4 as uuidv4 } from "uuid";
+import { db } from "../../firebase";
 
 const TextSection = () => {
-  const { sendTo } = useContext(UserContext);
+  const { sendTo, currentUser } = useContext(UserContext);
   const [type, setType] = useState("");
   const ref = useRef(null);
   function handleEnter(e) {
