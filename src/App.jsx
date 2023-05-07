@@ -1,5 +1,5 @@
 import { Home } from "./Pages/Home";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { auth, db } from "../src/firebase";
 import { useEffect } from "react";
 import { Login } from "./components/Login";
@@ -15,8 +15,8 @@ import {
 } from "firebase/firestore";
 import MobileHome from "./Pages/MobileHome/MobileHome";
 function App() {
-  const { mobile, setMobile, setUsers, currentUser, setCurrentUser } =
-    useContext(UserContext);
+  const { setUsers, currentUser, setCurrentUser } = useContext(UserContext);
+  const [mobile, setMobile] = useState(false);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -43,10 +43,10 @@ function App() {
     });
     return () => unsub();
   }, []);
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
   //check if user in mobile
   useEffect(() => {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(
         userAgent
@@ -54,10 +54,10 @@ function App() {
     ) {
       setMobile(true);
     } else {
-      setMobile(true);
+      setMobile(false);
     }
-  }, []);
-  return <>{currentUser ? !mobile ? <Home /> : <MobileHome /> : <Login />}</>;
+  }, [userAgent]);
+  return <>{currentUser ? mobile ? <MobileHome /> : <Home /> : <Login />}</>;
 }
 
 export default App;

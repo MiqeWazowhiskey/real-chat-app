@@ -18,23 +18,8 @@ const MobileHome = () => {
     sendTo,
     contact,
     setContact,
-    mobile,
-    setMobile,
   } = useContext(UserContext);
-  //check if user in mobile
-  useEffect(() => {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(
-        userAgent
-      )
-    ) {
-      setMobile(true);
-    } else {
-      setMobile(true);
-    }
-  }, []);
   return (
     <Layout>
       {!contact ? (

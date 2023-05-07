@@ -7,7 +7,6 @@ export const UserProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
   const [contact, setContact] = useState(false);
   const [sendTo, setSendTo] = useState({ id: "", name: "" });
-  const [mobile, setMobile] = useState(false);
   const [profileStatus, setProfileStatus] = useState("Chats");
   const handleToggle = () => {
     setContact(!contact);
@@ -15,8 +14,6 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        mobile,
-        setMobile,
         currentUser,
         setCurrentUser,
         users,

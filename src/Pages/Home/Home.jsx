@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { db } from "../../firebase";
 import { UserContext } from "../../context/UserContext";
 import { Layout } from "../../components/Layout";
-import { v4 as uuidv4 } from "uuid";
 import { Room } from "../../components/Room";
 import { doc, setDoc } from "firebase/firestore";
 import { Contacts } from "../../components/Contacts";
@@ -19,23 +17,8 @@ const Home = () => {
     handleToggle,
     profileStatus,
     sendTo,
-    mobile,
-    setMobile,
   } = useContext(UserContext);
-  //check if user in mobile
-  useEffect(() => {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(
-        userAgent
-      )
-    ) {
-      setMobile(true);
-    } else {
-      setMobile(true);
-    }
-  }, []);
   return (
     <Layout>
       {/**Profile Section */}
