@@ -13,9 +13,9 @@ import {
   query,
   setDoc,
 } from "firebase/firestore";
-
+import MobileHome from "./Pages/MobileHome/MobileHome";
 function App() {
-  const { users, setUsers, currentUser, setCurrentUser } =
+  const { mobile, setMobile, setUsers, currentUser, setCurrentUser } =
     useContext(UserContext);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -43,8 +43,21 @@ function App() {
     });
     return () => unsub();
   }, []);
+  //check if user in mobile
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-  return <>{currentUser ? <Home /> : <Login />}</>;
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(
+        userAgent
+      )
+    ) {
+      setMobile(true);
+    } else {
+      setMobile(true);
+    }
+  }, []);
+  return <>{currentUser ? !mobile ? <Home /> : <MobileHome /> : <Login />}</>;
 }
 
 export default App;
