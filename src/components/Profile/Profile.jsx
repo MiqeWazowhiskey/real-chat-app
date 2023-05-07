@@ -21,9 +21,9 @@ const Profile = ({ name, profilePhoto }) => {
           onClick={() => setProfileStatus("Chats")}
         >
           <span
-            className={`h-[64px] hover:bg-[#925df5] text-xl flex items-center pl-2  ${
+            className={`h-[64px] hover:bg-[#9b69f8] bg-[#8e56f5] text-xl flex items-center pl-2  ${
               profileStatus === "Chats"
-                ? "border-l-4 border-white bg-[#8e56f5]"
+                ? "border-l-4 border-white bg-[#9b69f8]"
                 : "border-none"
             }`}
           >
@@ -35,9 +35,9 @@ const Profile = ({ name, profilePhoto }) => {
           onClick={() => setProfileStatus("Settings")}
         >
           <span
-            className={`h-[64px] hover:bg-[#8e56f5] bg-[#925df5] text-xl flex items-center pl-2  ${
+            className={`h-[64px] hover:bg-[#9b69f8] bg-[#8e56f5] text-xl flex items-center pl-2  ${
               profileStatus === "Settings"
-                ? "border-l-4 border-white bg-[#8e56f5]"
+                ? "border-l-4 border-white bg-[#9b69f8]"
                 : "border-none"
             }`}
           >

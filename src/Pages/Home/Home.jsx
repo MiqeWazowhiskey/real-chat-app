@@ -9,6 +9,7 @@ import { Contacts } from "../../components/Contacts";
 import { BiMessageDetail as Message } from "react-icons/bi";
 import TextSection from "../../components/TextSection";
 import Profile from "../../components/Profile";
+import Settings from "../../components/Settings";
 const Home = () => {
   const {
     users,
@@ -16,7 +17,7 @@ const Home = () => {
     currentUser,
     setCurrentUser,
     handleToggle,
-    contact,
+    profileStatus,
     sendTo,
     mobile,
     setMobile,
@@ -40,9 +41,13 @@ const Home = () => {
       {/**Profile Section */}
       <Profile name={currentUser.displayName} profilePhoto={"/Hotpot.png"} />
       {/**Contacts Section */}
-      <div className="lg:w-1/4 w-full h-full mr-auto ">
-        <Contacts />
-      </div>
+      {profileStatus === "Chats" ? (
+        <div className="lg:w-1/4 w-full h-full mr-auto ">
+          <Contacts />
+        </div>
+      ) : (
+        <Settings />
+      )}
       {/**Message room */}
       <div className="w-2/4 lg:flex hidden flex-col p-5 h-full bg-[#e5e5f0] rounded-r-[12px]">
         <button>
