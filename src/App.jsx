@@ -14,6 +14,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import MobileHome from "./Pages/MobileHome/MobileHome";
+
 function App() {
   const { setUsers, currentUser, setCurrentUser } = useContext(UserContext);
   const [mobile, setMobile] = useState(false);

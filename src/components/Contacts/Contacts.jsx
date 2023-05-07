@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { motion } from "framer-motion";
 const Contacts = () => {
-  const { users, handleToggle, setSendTo, sendTo, currentUser } =
+  const { users, handleToggle, setSendTo, currentUser } =
     useContext(UserContext);
   const handleSelect = (child) => {
     setSendTo({ id: child.id, name: child.name });
@@ -35,7 +35,9 @@ const Contacts = () => {
                       className="w-[36px] rounded-full  border-2 border-white shadow-inner shadow-black"
                       src="/Hotpot.png"
                     />
-                    <span className="w-fit">{v.name.substring(0, 28)}</span>
+                    <span className="w-full text-start text-sm">
+                      {v.name.substring(0, 28)}
+                    </span>
                   </button>
                 )}
               </motion.div>

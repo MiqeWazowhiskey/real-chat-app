@@ -8,6 +8,7 @@ import { BiMessageDetail as Message } from "react-icons/bi";
 import TextSection from "../../components/TextSection";
 import Profile from "../../components/Profile";
 import Settings from "../../components/Settings";
+
 const Home = () => {
   const {
     users,

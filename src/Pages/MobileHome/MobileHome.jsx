@@ -39,7 +39,7 @@ const MobileHome = () => {
           )}
         </>
       ) : (
-        <div className="lg:w-2/4 w-full flex flex-col p-5 h-full bg-[#e5e5f0] rounded-r-[12px]">
+        <div className="lg:w-2/4 w-full flex flex-col p-5 h-full bg-[#e5e5f0] ">
           <div className="flex flex-row">
             <button className="focus:outline-none">
               <h2 className="mt-8 text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725] brightness-200 ">
