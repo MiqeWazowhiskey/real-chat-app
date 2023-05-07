@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { UserContext } from "../../context/UserContext";
+// Create a root reference
+const storage = getStorage();
 
 const Uploader = () => {
-  const [photo, setPhoto] = useState();
+  const { currentUser } = useContext(UserContext);
+  const [photo, setPhoto] = useState(null);
   const handlePhoto = (e) => {
     if (e.target.files[0]) {
       setPhoto(e.target.files[0]);
@@ -9,6 +14,14 @@ const Uploader = () => {
       alert("Please upload a photo");
     }
   };
+  const upload = () => {
+    if (photo == null) {
+      return;
+    }
+    const photoRef = ref(storage, `${currentUser.uid}`);
+    uploadBytes(photoRef, photo).then(() => alert("Profile photo changed"));
+  };
+
   return (
     <>
       <input
@@ -19,7 +32,7 @@ const Uploader = () => {
       />
       <div className="ml-auto mr-auto w-1/3 ">
         <button
-          onClick={() => console.log(photo)}
+          onClick={() => upload()}
           style={{ boxShadow: "4px 4px white" }}
           className="text-center  mt-[32px]  p-2  focus:outline-none  rounded-[12px]"
         >
