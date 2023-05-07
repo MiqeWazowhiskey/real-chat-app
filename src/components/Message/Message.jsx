@@ -20,8 +20,8 @@ const Message = ({ from, message, time, id, like }) => {
       <div
         className={`w-fit max-w-[80%] p-5 rounded-[12px] mr-[3px] ${
           from == currentUser.uid
-            ? "ml-auto bg-[#681af8] text-white"
-            : " bg-[#e5e5f0] text-gray-800"
+            ? "ml-auto mr-8 bg-[#681af8] text-white"
+            : " bg-[#f6f6fc] text-gray-800"
         }`}
       >
         {/**Message */}
@@ -31,8 +31,8 @@ const Message = ({ from, message, time, id, like }) => {
       {/**Info Section */}
 
       <div
-        className={`flex flex-row items-center gap-x-1 text-[10px] text-center w-fit text-[#a0a0a0] mt-[5px] mb-[5px] ${
-          from == currentUser.uid ? "ml-auto " : "mr-auto"
+        className={`flex flex-row  items-center gap-x-1 text-[10px] text-center w-fit text-[#a0a0a0] mt-[5px] mb-[5px] ${
+          from == currentUser.uid ? "ml-auto mr-8" : "mr-auto"
         }`}
       >
         {/**Time */}

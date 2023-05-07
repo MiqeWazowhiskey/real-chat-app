@@ -14,15 +14,16 @@ const Profile = ({ name, profilePhoto }) => {
         />
         <div className="font-bold text-3xl mt-3">{name}</div>
       </div>
+      {/**Setting section */}
       <div className="flex h-1/2 flex-col mt-10">
         <button
           className="focus:outline-none"
-          onClick={setProfileStatus("Chats")}
+          onClick={() => setProfileStatus("Chats")}
         >
           <span
-            className={`h-[64px] hover:bg-[#8e56f5] bg-[#925df5] text-xl flex items-center pl-2  ${
-              profileStatus == "Settings"
-                ? "border-l-4 border-white"
+            className={`h-[64px] hover:bg-[#925df5] text-xl flex items-center pl-2  ${
+              profileStatus === "Chats"
+                ? "border-l-4 border-white bg-[#8e56f5]"
                 : "border-none"
             }`}
           >
@@ -31,12 +32,12 @@ const Profile = ({ name, profilePhoto }) => {
         </button>
         <button
           className="focus:outline-none"
-          onClick={setProfileStatus("Settings")}
+          onClick={() => setProfileStatus("Settings")}
         >
           <span
-            className={`h-[64px] hover:bg-[#8e56f5] bg-[#925df5] text-xl flex items-center pl-2 border-l-2 ${
-              profileStatus == "Settings"
-                ? "border-l-4 border-white"
+            className={`h-[64px] hover:bg-[#8e56f5] bg-[#925df5] text-xl flex items-center pl-2  ${
+              profileStatus === "Settings"
+                ? "border-l-4 border-white bg-[#8e56f5]"
                 : "border-none"
             }`}
           >

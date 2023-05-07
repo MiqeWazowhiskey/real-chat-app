@@ -13,7 +13,6 @@ import {
   query,
   setDoc,
 } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const { users, setUsers, currentUser, setCurrentUser } =

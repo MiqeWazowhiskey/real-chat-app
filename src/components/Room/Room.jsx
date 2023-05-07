@@ -62,7 +62,7 @@ const Room = () => {
         id="room"
         ref={messagesEndRef}
         style={{ overflowY: "auto" }}
-        className="h-full w-full m-6 space-y-1"
+        className="h-full w-full m-6 space-y-1 no-scrollbar"
       >
         {messages
           .slice(0)
