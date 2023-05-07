@@ -11,16 +11,16 @@ const Contacts = () => {
 
   return (
     <div
-      className="no-scrollbar h-full border-r-2 bg-[#e5e5f0] pt-10 border-[#9c9ca5]"
+      className="no-scrollbar h-full border-r-2 pt-5 bg-[#e5e5f0] border-[#9c9ca5] "
       style={{ overflowY: "auto" }}
     >
-      <div className="w-full h-full flex-col flex items-center">
+      <div className="w-full  h-fit flex-col flex items-center">
         {users &&
           users.map((v, i) => {
             return (
               <motion.div
                 key={i}
-                className=" justif-around w-4/5 m-2"
+                className=" justif-around w-4/5 m-2 "
                 whileHover={{ scale: 1.05 }}
               >
                 {v.name && v.id != currentUser.uid && (

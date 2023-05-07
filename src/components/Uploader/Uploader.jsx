@@ -18,7 +18,7 @@ const Uploader = () => {
     if (photo == null) {
       return;
     }
-    const photoRef = ref(storage, `${currentUser.uid}`);
+    const photoRef = ref(storage, `images/${currentUser.uid}`);
     uploadBytes(photoRef, photo).then(() => alert("Profile photo changed"));
   };
 

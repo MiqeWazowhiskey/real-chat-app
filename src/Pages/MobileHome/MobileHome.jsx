@@ -31,7 +31,7 @@ const MobileHome = () => {
           />
           {/**Contacts Section */}
           {profileStatus === "Chats" ? (
-            <div className="lg:w-1/4 w-full h-full mr-auto ">
+            <div className="lg:w-1/4 w-full lg:h-full h-1/2 mr-auto">
               <Contacts />
             </div>
           ) : (
