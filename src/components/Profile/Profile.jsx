@@ -4,7 +4,7 @@ import { useContext } from "react";
 const Profile = ({ name, profilePhoto }) => {
   const { profileStatus, setProfileStatus } = useContext(UserContext);
   return (
-    <div className="w-1/4 h-full bg-gradient-to-b from-[#d9ccf1] to-[#7831fc] rounded-l-[12px] text-white">
+    <div className="w-1/4 h-full bg-gradient-to-b from-[#d9ccf1] to-[#7831fc] rounded-l-[12px] text-white hidden lg:block">
       {/**Photo Section */}
       <div className="w-full flex justify-center items-center mt-10 flex-col">
         <img
