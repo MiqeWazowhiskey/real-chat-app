@@ -44,7 +44,7 @@ const MobileHome = () => {
               <h2 className="mt-8 text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725] ">
                 {sendTo.id.length > 1 ? (
                   <div className="flex items-center gap-x-5">
-                    <UserPhoto userId={sendTo.id} />
+                    <UserPhoto userId={sendTo.id} className={"w-16 h-16"} />
                     {sendTo.name}
                   </div>
                 ) : (

@@ -2,17 +2,14 @@ import React from "react";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useGetPhoto } from "../../hooks/useGetPhoto";
+import UserPhoto from "../UserPhoto";
 const Profile = ({ name, profilePhoto }) => {
   const { profileStatus, setProfileStatus } = useContext(UserContext);
   return (
     <div className="lg:w-1/4 w-full lg:h-full  min-h-1/2 bg-gradient-to-b from-[#d9ccf1] to-[#7831fc] lg:rounded-l-[12px] text-white">
       {/**Photo Section */}
       <div className="w-full lg:h-1/3 h-1/2 flex justify-center items-center  mt-5 flex-col">
-        <img
-          src={profilePhoto}
-          sizes="92x92"
-          className="w-[148px] h-[148px] object-cover rounded-full border-8 border-white"
-        />
+        <UserPhoto className={"h-36 w-36"} userId={profilePhoto} />
         <div className="font-bold text-3xl mt-3">{name}</div>
       </div>
       {/**Setting section */}
