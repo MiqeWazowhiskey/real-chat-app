@@ -1,7 +1,10 @@
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+/* Bad performance it might improved, then it will be not useless.
+
+
+import { getMetadata, ref, listAll, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase";
 import { useState, useCallback, useEffect } from "react";
-const listRef = ref(storage, "images");
+const listRef = ref(storage, "images/");
 export function useListPhotos() {
   const [allPhotos, setAllPhotos] = useState([]);
   useEffect(() => {
@@ -13,9 +16,10 @@ export function useListPhotos() {
         });
         res.items.forEach((itemRef) => {
           // All the items under listRef.
-          getDownloadURL(itemRef)
-            .then((url) => {
-              setAllPhotos([...allPhotos, url]);
+
+          getMetadata(itemRef)
+            .then((metaData) => {
+              setAllPhotos([...allPhotos, metaData.name]);
             })
             .catch((err) => {});
         });
@@ -27,3 +31,4 @@ export function useListPhotos() {
   }, []);
   return allPhotos;
 }
+*/

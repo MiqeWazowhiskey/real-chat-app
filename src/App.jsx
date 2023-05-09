@@ -14,6 +14,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import MobileHome from "./Pages/MobileHome/MobileHome";
+import { useGetPhoto } from "./hooks/useGetPhoto";
 function App() {
   const { setUsers, currentUser, setCurrentUser } = useContext(UserContext);
   const [mobile, setMobile] = useState(false);
@@ -40,7 +41,6 @@ function App() {
       snap.forEach((doc) => {
         temp.push({
           ...doc.data(),
-          id: doc.id,
         });
       });
       setUsers(temp);

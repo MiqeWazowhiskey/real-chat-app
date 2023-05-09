@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
 import { useGetPhoto } from "../../hooks/useGetPhoto";
-import { useListPhotos } from "../../hooks/useListPhotos";
+import UserPhoto from "../UserPhoto";
+
 const Contacts = () => {
   const { users, handleToggle, setSendTo, currentUser } =
     useContext(UserContext);
@@ -15,7 +16,7 @@ const Contacts = () => {
 
   return (
     <div
-      className="no-scrollbar h-full border-r-2 pt-5 bg-[#e5e5f0] border-[#9c9ca5] "
+      className="no-scrollbar h-full border-r-2 pb-3 pt-3 bg-[#e5e5f0] border-[#9c9ca5] "
       style={{ overflowY: "auto" }}
     >
       <div className="w-full  h-fit flex-col flex items-center">
@@ -24,7 +25,7 @@ const Contacts = () => {
             return (
               <motion.div
                 key={i}
-                className=" justif-around w-4/5 m-2 "
+                className="w-5/6 m-2"
                 whileHover={{ scale: 1.05 }}
               >
                 {v.name && v.id != currentUser.uid && (
@@ -34,12 +35,7 @@ const Contacts = () => {
                     }}
                     className="focus:outline-none w-full flex items-center gap-x-10 font-bold hover:bg-[#d5d5df] bg-[#ceced8] p-5 rounded-[12px]"
                   >
-                    <img
-                      id="contactPhoto"
-                      sizes="36x36"
-                      className="w-[48px] h-[48px] rounded-[50px]  object-cover border-2 border-white shadow-inner shadow-black"
-                      src={v.photo}
-                    />
+                    <UserPhoto userId={v.id} />
                     <span className="w-full text-start text-sm">
                       {v.name.substring(0, 28)}
                     </span>

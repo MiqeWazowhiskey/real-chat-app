@@ -24,17 +24,22 @@ const Uploader = () => {
 
   return (
     <>
-      <input
-        onChange={(e) => handlePhoto(e)}
-        accept="image/jpeg, image/png"
-        type="file"
-        className="p-5 "
-      />
-      <div className="ml-auto mr-auto w-1/3 ">
+      <label
+        style={{ boxShadow: "4px 4px white" }}
+        className="inline-block p-5 cursor-pointer w-fit ml-auto bg-[#8e56f5] mr-auto rounded-[12px]"
+      >
+        Select Photo
+        <input
+          onChange={(e) => handlePhoto(e)}
+          accept="image/jpeg, image/png"
+          type="file"
+          className="p-5 hidden"
+        />
+      </label>
+      <div className="ml-auto mr-auto w-fit ">
         <button
           onClick={() => upload()}
-          style={{ boxShadow: "4px 4px white" }}
-          className="text-center  mt-[32px]  p-2  focus:outline-none  rounded-[12px]"
+          className="text-center  mt-[32px]  p-2  focus:outline-none text-gray-400 hover:bg-[#d7d7d7]  bg-[#ffffff] rounded-[12px]"
         >
           Confirm
         </button>
