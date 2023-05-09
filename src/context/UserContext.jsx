@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
   const [contact, setContact] = useState(false);
   const [sendTo, setSendTo] = useState({ id: "", name: "" });
   const [profileStatus, setProfileStatus] = useState("Chats");
-  const [profilePhotos, setProfilePhotos] = useState([]);
+
   const handleToggle = () => {
     setContact(!contact);
   };
@@ -27,8 +27,6 @@ export const UserProvider = ({ children }) => {
         setSendTo,
         profileStatus,
         setProfileStatus,
-        profilePhotos,
-        setProfilePhotos,
       }}
     >
       {children}

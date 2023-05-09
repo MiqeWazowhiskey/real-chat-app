@@ -13,6 +13,7 @@ import { db } from "../../firebase";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import Message from "../Message";
+import { useGetPhoto } from "../../hooks/useGetPhoto";
 
 const Room = () => {
   /*to change something for all docs
@@ -32,7 +33,6 @@ const Room = () => {
     */
   const { messages, setMessages, currentUser, sendTo, messagesEndRef } =
     useContext(UserContext);
-
   useEffect(() => {
     const q = query(
       collection(db, "room"),

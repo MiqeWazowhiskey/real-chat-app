@@ -1,6 +1,7 @@
 import React from "react";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
+import { useGetPhoto } from "../../hooks/useGetPhoto";
 const Profile = ({ name, profilePhoto }) => {
   const { profileStatus, setProfileStatus } = useContext(UserContext);
   return (
@@ -10,7 +11,7 @@ const Profile = ({ name, profilePhoto }) => {
         <img
           src={profilePhoto}
           sizes="92x92"
-          className="w-48 h-48 rounded-full border-8 border-white"
+          className="w-[148px] h-[148px] object-cover rounded-full border-8 border-white"
         />
         <div className="font-bold text-3xl mt-3">{name}</div>
       </div>

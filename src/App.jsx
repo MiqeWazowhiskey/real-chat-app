@@ -1,5 +1,5 @@
 import { Home } from "./Pages/Home";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { auth, db } from "../src/firebase";
 import { useEffect } from "react";
 import { Login } from "./components/Login";
@@ -14,10 +14,10 @@ import {
   setDoc,
 } from "firebase/firestore";
 import MobileHome from "./Pages/MobileHome/MobileHome";
-
 function App() {
   const { setUsers, currentUser, setCurrentUser } = useContext(UserContext);
   const [mobile, setMobile] = useState(false);
+
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
