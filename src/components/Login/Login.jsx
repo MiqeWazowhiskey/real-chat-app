@@ -26,7 +26,7 @@ const Login = () => {
           </span>
           <img
             src="Hotpot.png"
-            className="object-cover w-[200px] h-[200px] rounded-full"
+            className="object-cover w-[200px] h-[200px] rounded-full lg:mt-44"
           />
         </div>
       </div>
