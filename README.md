@@ -8,7 +8,7 @@
 
 ## Mobile Overview
 
-![Mobile_Contacts](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/ab86eef9-4378-481c-898e-09fb0f3d7443)
+![image](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/9281febe-01aa-4627-b333-bf4995709694)
 
 ## Desktop Chat View
 
