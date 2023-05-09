@@ -38,7 +38,10 @@ function App() {
     const unsub = onSnapshot(q, (snap) => {
       const temp = [];
       snap.forEach((doc) => {
-        temp.push({ ...doc.data(), id: doc.id });
+        temp.push({
+          ...doc.data(),
+          id: doc.id,
+        });
       });
       setUsers(temp);
     });

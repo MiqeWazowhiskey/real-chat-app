@@ -12,6 +12,7 @@ const Contacts = () => {
     setSendTo({ id: child.id, name: child.name });
     handleToggle();
   };
+
   return (
     <div
       className="no-scrollbar h-full border-r-2 pt-5 bg-[#e5e5f0] border-[#9c9ca5] "
@@ -36,8 +37,8 @@ const Contacts = () => {
                     <img
                       id="contactPhoto"
                       sizes="36x36"
-                      className="w-[64px] h-[48px] rounded-[50px]  object-cover border-2 border-white shadow-inner shadow-black"
-                      src={uri}
+                      className="w-[48px] h-[48px] rounded-[50px]  object-cover border-2 border-white shadow-inner shadow-black"
+                      src={v.photo}
                     />
                     <span className="w-full text-start text-sm">
                       {v.name.substring(0, 28)}

@@ -20,9 +20,9 @@ const Home = () => {
     profileStatus,
     sendTo,
   } = useContext(UserContext);
-  const profilePhoto = useGetPhoto(`${currentUser.uid}.png`);
-  const sendToProfilePhoto = useGetPhoto(`${sendTo.id}.png`);
-
+  const profilePhoto = useGetPhoto(`${currentUser.uid}`);
+  const sendToProfilePhoto = useGetPhoto(`${sendTo.id}`);
+  console.log(sendToProfilePhoto);
   return (
     <Layout>
       {/**Profile Section */}

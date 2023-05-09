@@ -20,8 +20,8 @@ const MobileHome = () => {
     contact,
     setContact,
   } = useContext(UserContext);
-  const profilePhoto = useGetPhoto(`${currentUser.uid}.png`);
-  const sendToProfilePhoto = useGetPhoto(`${sendTo.id}.png`);
+  const profilePhoto = useGetPhoto(`${currentUser.uid}`);
+  const sendToProfilePhoto = useGetPhoto(`${sendTo.id}`);
   return (
     <Layout>
       {!contact ? (

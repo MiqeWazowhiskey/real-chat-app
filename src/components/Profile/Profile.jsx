@@ -5,7 +5,7 @@ import { useGetPhoto } from "../../hooks/useGetPhoto";
 const Profile = ({ name, profilePhoto }) => {
   const { profileStatus, setProfileStatus } = useContext(UserContext);
   return (
-    <div className="lg:w-1/4 w-full lg:h-full h-1/2 bg-gradient-to-b from-[#d9ccf1] to-[#7831fc] lg:rounded-l-[12px] text-white">
+    <div className="lg:w-1/4 w-full lg:h-full  h-1/2 bg-gradient-to-b from-[#d9ccf1] to-[#7831fc] lg:rounded-l-[12px] text-white">
       {/**Photo Section */}
       <div className="w-full lg:h-1/3 h-1/2 flex justify-center items-center mt-10 flex-col">
         <img

@@ -5,7 +5,7 @@ const Settings = () => {
   const [moveToInput, setMoveToInput] = useState(false);
 
   return (
-    <div className="flex flex-col lg:w-1/4 w-full h-full gap-y-1 p-3  bg-gradient-to-b from-[#d9ccf1] to-[#7831fc] lg:border-l-2 text-white text-xl  ">
+    <div className="flex flex-col lg:w-1/4 w-full lg:h-full h-1/2 gap-y-1 p-3  bg-gradient-to-b from-[#d9ccf1] to-[#7831fc] lg:border-l-2 text-white text-xl  ">
       {!moveToInput ? (
         <>
           <button
