@@ -18,10 +18,12 @@ const MobileHome = () => {
     handleToggle,
     profileStatus,
     sendTo,
+    setSendTo,
     contact,
     setContact,
   } = useContext(UserContext);
   const profilePhoto = useGetPhoto(currentUser.uid);
+
   return (
     <Layout>
       {!contact ? (
