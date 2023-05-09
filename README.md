@@ -1,21 +1,35 @@
-# Chat App
+# Chat App (WP2 lol)
+### Chat app is a user friendly and well designed real-time chat web application built with ReactJS, TailwindCss and Firebase at large.
+### It has both mobile and desktop support.
 
-## User can login with their google account and start chat.
+## Desktop Overview
 
-![Screenshot 2023-01-24 035410](https://user-images.githubusercontent.com/91954535/214191281-f96c67f4-08c3-46cd-9a8a-8c71c12dc990.jpg)
+![Desktop_Contacts](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/04afdbfb-3f16-4e2e-8f04-beddba221d7e)
 
-## User have to select another user to message, otherwise sending message feature will be disabled.
+## Mobile Overview
 
-![Screenshot 2023-01-24 035209](https://user-images.githubusercontent.com/91954535/214191542-970d80eb-6355-4bb3-8def-3ee21cf3df99.jpg)
+![Mobile_Contacts](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/ab86eef9-4378-481c-898e-09fb0f3d7443)
 
-## Send message section 
+## Desktop Chat View
 
-![Screenshot 2023-01-24 035227](https://user-images.githubusercontent.com/91954535/214191491-10abd32e-f456-4cde-bc02-0018eb6b4a74.jpg)
+![Desktop_Chat](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/175b0c41-f6af-4ce1-b0e9-5390634de9fe)
 
-## Chat section
+## Mobile Chat View
 
-![Screenshot 2023-01-24 155707](https://user-images.githubusercontent.com/91954535/214297548-e4c39ae5-f159-4175-9557-0a07220af6f2.jpg)
+![Mobile_Chat](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/1f1642f8-c7d9-489a-947d-35a10c6bdfcd)
 
-## MOBILE
+## Desktop Settings View
 
-![Screenshot 2023-01-24 155808](https://user-images.githubusercontent.com/91954535/214297710-229386ba-6a7a-47dc-b8e4-d2245bd7563b.jpg)
+![Desktop_Settings](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/f08fc985-f8c8-4fc4-a6ac-2aed8bf78b6f)
+
+## Mobile Settings View
+
+![Mobile_Change_Photo](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/60ce4258-8e66-43d1-92e3-56f60179048c)
+
+## Desktop Login
+
+![Desktop_LoginsCREEN](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/31e54f32-6ba9-4d9d-909f-b3ec827fc60d)
+
+## Mobile Login
+
+![mOBILElOGIN](https://github.com/MiqeWazowhiskey/real-chat-app/assets/91954535/da52bc3c-7733-461e-b0dc-ba97a3ce6e37)
