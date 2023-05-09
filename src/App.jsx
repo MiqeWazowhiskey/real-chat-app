@@ -2,7 +2,7 @@ import { Home } from "./Pages/Home";
 import { useCallback, useContext, useState } from "react";
 import { auth, db } from "../src/firebase";
 import { useEffect } from "react";
-import { Login } from "./components/Login";
+import { Login } from "./Pages/Login";
 import { UserContext } from "./context/UserContext";
 import { v4 as uuidv4 } from "uuid";
 import {

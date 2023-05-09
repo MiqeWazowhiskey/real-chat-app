@@ -1,8 +1,7 @@
 import { signInWithRedirect } from "firebase/auth";
 import React from "react";
 import { auth, provider } from "../../firebase";
-import { Layout } from "../Layout";
-
+import { Layout } from "../../components/Layout";
 const Login = () => {
   const login = async () => {
     signInWithRedirect(auth, provider).catch((er) => alert(er));
