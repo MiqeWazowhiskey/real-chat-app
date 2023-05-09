@@ -9,7 +9,10 @@ const Profile = ({ name, profilePhoto }) => {
     <div className="lg:w-1/4 w-full lg:h-full  min-h-1/2 bg-gradient-to-b from-[#d9ccf1] to-[#7831fc] lg:rounded-l-[12px] text-white">
       {/**Photo Section */}
       <div className="w-full lg:h-1/3 h-1/2 flex justify-center items-center  mt-5 flex-col">
-        <UserPhoto className={"h-36 w-36"} userId={profilePhoto} />
+        <UserPhoto
+          className={"h-36 w-36 lg:h-48 lg:w-48"}
+          userId={profilePhoto}
+        />
         <div className="font-bold text-3xl mt-3">{name}</div>
       </div>
       {/**Setting section */}
