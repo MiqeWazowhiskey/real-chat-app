@@ -22,7 +22,6 @@ const Contacts = () => {
       <div className="w-full  h-fit flex-col flex items-center">
         {users &&
           users.map((v, i) => {
-            console.log(v.id + v.name);
             return (
               <motion.div
                 key={i}
