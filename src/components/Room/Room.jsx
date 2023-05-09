@@ -14,7 +14,6 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import Message from "../Message";
 import { useGetPhoto } from "../../hooks/useGetPhoto";
-
 const Room = () => {
   /*to change something for all docs
     useEffect(()=>{
@@ -70,6 +69,7 @@ const Room = () => {
             return parseFloat(a.time) - parseFloat(b.time);
           })
           .map((v, i) => {
+            console.log(v);
             return (
               <span key={i}>
                 <Message

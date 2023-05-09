@@ -8,6 +8,7 @@ import TextSection from "../../components/TextSection";
 import Profile from "../../components/Profile";
 import Settings from "../../components/Settings";
 import { useGetPhoto } from "../../hooks/useGetPhoto";
+import UserPhoto from "../../components/UserPhoto";
 const MobileHome = () => {
   const {
     users,
@@ -20,8 +21,7 @@ const MobileHome = () => {
     contact,
     setContact,
   } = useContext(UserContext);
-  const profilePhoto = useGetPhoto(`${currentUser.uid}`);
-  const sendToProfilePhoto = useGetPhoto(`${sendTo.id}`);
+  const profilePhoto = useGetPhoto(currentUser.uid);
   return (
     <Layout>
       {!contact ? (
@@ -44,10 +44,7 @@ const MobileHome = () => {
               <h2 className="mt-8 text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725] ">
                 {sendTo.id.length > 1 ? (
                   <div className="flex items-center gap-x-5">
-                    <img
-                      className="w-[48px] h-[48px] rounded-[50px] border-2 border-[#8e56f5]"
-                      src={sendToProfilePhoto}
-                    />
+                    <UserPhoto userId={sendTo.id} />
                     {sendTo.name}
                   </div>
                 ) : (

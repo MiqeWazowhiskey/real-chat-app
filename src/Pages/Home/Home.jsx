@@ -9,6 +9,7 @@ import TextSection from "../../components/TextSection";
 import Profile from "../../components/Profile";
 import Settings from "../../components/Settings";
 import { useGetPhoto } from "../../hooks/useGetPhoto";
+import UserPhoto from "../../components/UserPhoto";
 
 const Home = () => {
   const {
@@ -21,8 +22,7 @@ const Home = () => {
     sendTo,
   } = useContext(UserContext);
   const profilePhoto = useGetPhoto(`${currentUser.uid}`);
-  const sendToProfilePhoto = useGetPhoto(`${sendTo.id}`);
-  console.log(sendToProfilePhoto);
+
   return (
     <Layout>
       {/**Profile Section */}
@@ -41,10 +41,7 @@ const Home = () => {
           <h2 className="text-2xl font-bold w-full text-center lg:p-2 px-2 text-[#1B1725]  ">
             {sendTo.id.length > 1 ? (
               <div className="flex items-center gap-x-5">
-                <img
-                  className="w-[48px] h-[48px] rounded-[50px] border-2 border-[#8e56f5]"
-                  src={sendToProfilePhoto}
-                />
+                <UserPhoto userId={sendTo.id} />
                 {sendTo.name}
               </div>
             ) : (
