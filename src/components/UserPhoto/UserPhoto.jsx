@@ -3,7 +3,7 @@ import { useGetPhoto } from "../../hooks/useGetPhoto";
 const UserPhoto = ({ userId }) => {
   let pp = useGetPhoto(userId);
   if (pp == undefined) {
-    pp = import.meta.env.VITE_DEFAULT_PNG;
+    pp = "/Hotpot.png";
   }
   console.log(pp);
   return (
