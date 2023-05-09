@@ -5,6 +5,7 @@ const UserPhoto = ({ userId }) => {
   if (pp == undefined) {
     pp = import.meta.env.VITE_DEFAULT_PNG;
   }
+  console.log(pp);
   return (
     <img
       id="contactPhoto"
