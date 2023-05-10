@@ -10,7 +10,7 @@ const Profile = ({ name, profilePhoto }) => {
       {/**Photo Section */}
       <div className="w-full lg:h-1/3 h-1/2 flex justify-center items-center  mt-5 flex-col">
         <UserPhoto
-          className={"h-36 w-36 lg:h-48 lg:w-48"}
+          className={"h-40 w-40 lg:h-48 lg:w-48"}
           userId={profilePhoto}
         />
         <div className="font-bold text-3xl mt-3">{name}</div>
