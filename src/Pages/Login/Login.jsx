@@ -1,11 +1,16 @@
 import { signInWithRedirect } from "firebase/auth";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { auth, provider } from "../../firebase";
 import { Layout } from "../../components/Layout";
 const Login = () => {
   const login = async () => {
     signInWithRedirect(auth, provider).catch((er) => alert(er));
   };
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+
+  const installButtonRef = useRef(null);
+  let beforeInstallPromptEvent;
+
   return (
     <Layout>
       <div className="w-full h-full flex items-center flex-col justify-center ">

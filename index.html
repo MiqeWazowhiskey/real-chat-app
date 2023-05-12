@@ -2,12 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="manifest" href="./manifest.json" />
     <link rel="icon" type="image/png" href="/Hotpot.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://kit.fontawesome.com/5dd92a6a44.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/serviceWorker.js")
+          .then((res) => console.log(res));
+      }
+    </script>
     <title>ChatApp</title>
   </head>
   <body>
