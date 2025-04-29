@@ -1,6 +1,5 @@
 /* Bad performance it might improved, then it will be not useless.
 
-
 import { getMetadata, ref, listAll, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase";
 import { useState, useCallback, useEffect } from "react";
@@ -11,8 +10,6 @@ export function useListPhotos() {
     listAll(listRef)
       .then((res) => {
         res.prefixes.forEach((folderRef) => {
-          // All the prefixes under listRef.
-          // You may call listAll() recursively on them.
         });
         res.items.forEach((itemRef) => {
           // All the items under listRef.
@@ -25,7 +22,6 @@ export function useListPhotos() {
         });
       })
       .catch((error) => {
-        // Uh-oh, an error occurred!
         return allPhotos;
       });
   }, []);
